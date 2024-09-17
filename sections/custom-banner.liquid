@@ -1,0 +1,134 @@
+<div class="custom-banner">
+  <div class="banner-left">
+    <h1>{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.text }}</p>
+    <a href="{{ section.settings.button_link }}" class="banner-button">{{ section.settings.button_label }} 💪</a>
+  </div>
+  <div class="banner-right">
+    <img src="{{ section.settings.image | img_url: '1600x' }}" alt="Banner Image"/>
+  </div>
+</div>
+
+<style>
+  .custom-banner {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .banner-left, .banner-right {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .banner-left {
+    text-align: center;
+    color: #ff6600;
+  }
+
+  .banner-left h1 {
+    color: #fff;
+    margin: 0 0 10px 0; /* Margin below the h1 */
+  }
+
+  .banner-left p {
+    color: #fff;
+    margin: 0 0 20px 0; /* Margin below the p */
+  }
+
+  .banner-right {
+    text-align: center;
+  }
+
+  .banner-right img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .banner-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #ff6600;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 20px; /* Increased space above the button */
+    box-sizing: border-box;
+  }
+
+  .banner-button:hover {
+    background-color: #ff9933;
+  }
+
+  @media (max-width: 768px) {
+    .custom-banner {
+      flex-direction: column;
+    }
+    .banner-left, .banner-right {
+      flex: none;
+      width: 100%;
+    }
+    .banner-button {
+      width: 100%;
+      font-size: 1rem;
+      padding: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .banner-button {
+      font-size: 0.875rem;
+      padding: 8px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Macros at Your Doorstep"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Get prepped with our range of customizable ready-made meals."
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Get Prepped"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

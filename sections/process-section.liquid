@@ -1,0 +1,82 @@
+{% schema %}
+{
+  "name": "Process Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "How It Works"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "process-step",
+      "name": "Process Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Step description here"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="process-section">
+  <h2>{{ section.settings.title }}</h2>
+  <div class="process-steps">
+    {% for block in section.blocks %}
+      <div class="process-step">
+        <img src="{{ block.settings.icon | img_url: '100x' }}" alt="Process Icon"/>
+        <p>{{ block.settings.description }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .process-section {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .process-section h2 {
+    margin-bottom: 20px;
+    font-size: 3rem;
+    color: #fff;
+  }
+  .process-steps {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  .process-step {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .process-step img {
+    max-width: 80px;
+    margin-bottom: 15px;
+  }
+  .process-step p {
+    font-size: 1.5rem;
+    color: #333;
+  }
+</style>
