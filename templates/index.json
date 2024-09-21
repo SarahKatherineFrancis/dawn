@@ -44,24 +44,58 @@
         "title": "How It Works"
       }
     },
+    "reviews-slider": {
+      "type": "reviews-slider",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "review_text": "I can't recommend these macro meal plans enough! They've completely changed the way I approach my nutrition. The meals are perfectly balanced, making it easy to hit my macro goals without any guesswork. Not only are they nutritious, but they taste amazing too, which is hard to find in meal plans. I've noticed better energy levels and even some positive changes in my physique since starting. Whether you're trying to lose weight, gain muscle, or just eat healthier, these plans are a game-changer!",
+            "author_name": "John Doe"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "review_text": "I had a fantastic experience with this company! The customer service was outstanding—helpful and quick to answer all my questions. The shipping was impressively fast; my order arrived sooner than expected and in perfect condition. It's rare to find a company that excels in both service and delivery, but they truly nailed it. I’m very satisfied and will definitely order again!",
+            "author_name": "Jane Smith"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "review_text": "The quality of these macro meal plans really exceeded my expectations! The meals are fresh, perfectly portioned, and make hitting my nutritional goals so much easier. I’ve tried other plans before, but none have been as accurate with macros while still being delicious and convenient. This has helped me stay on track with my fitness goals, and I’m definitely going to keep ordering. Highly recommend for anyone serious about nutrition!",
+            "author_name": "Sarah Lee"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/customer.jpg"
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Popular Meals",
+        "title": "Our Meal Plans",
         "heading_size": "h2",
-        "description": "<p>Our top-selling meals, curated just for you.<\/p>",
-        "show_description": true,
+        "description": "<p>Wholesome, chef-prepared meals made from fresh, locally sourced ingredients, delivered to your doorstep every day—just heat and enjoy!<\/p>",
+        "show_description": false,
         "description_style": "body",
         "collection": "all",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "full_width": true,
+        "products_to_show": 3,
+        "columns_desktop": 3,
+        "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "accent-2",
-        "image_ratio": "portrait",
-        "image_shape": "default",
+        "image_ratio": "square",
+        "image_shape": "parallelogram",
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
@@ -117,6 +151,7 @@
   "order": [
     "custom_banner",
     "process-section",
+    "reviews-slider",
     "featured_collection",
     "image_banner_TqFpLH"
   ]

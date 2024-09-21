@@ -1,0 +1,168 @@
+<section class="reviews-slider">
+  <div class="container">
+    <div class="reviews-slider__content">
+      <div class="reviews-slider__image">
+        <img
+          src="{{ section.settings.image | img_url: '400x400' }}"
+          alt="Customer Image"
+          width="400"
+          height="400"
+        >
+      </div>
+
+      <div class="reviews-slider__reviews">
+        <h2 class="reviews-slider__heading">What Customers Say</h2>
+
+        <div class="reviews-slider__review" id="slider">
+          {% for block in section.blocks %}
+            <div class="review">
+              <div class="review-rating">
+                <span class="star-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              </div>
+              <p class="review-text">"{{ block.settings.review_text }}"</p>
+              <p class="review-author">- {{ block.settings.author_name }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let reviews = document.querySelectorAll('.review');
+    let currentIndex = 0;
+
+    function showNextReview() {
+      if (reviews.length === 0) return;
+
+      reviews[currentIndex].classList.remove('active');
+
+      currentIndex = (currentIndex + 1) % reviews.length;
+      reviews[currentIndex].classList.add('active');
+    }
+
+    // Initially display the first review
+    if (reviews.length > 0) {
+      reviews[currentIndex].classList.add('active');
+
+      // Start changing reviews immediately
+      setInterval(showNextReview, 5000); // Change every 5 seconds
+    }
+  });
+</script>
+
+<style>
+  .reviews-slider {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .reviews-slider__content {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .reviews-slider__image {
+    width: 40%; /* Decrease width to make the image smaller */
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+
+  .reviews-slider__image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .reviews-slider__reviews {
+    width: 60%; /* Adjust width if needed to balance with the image */
+    box-sizing: border-box;
+  }
+
+  .reviews-slider__heading {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  .review {
+    display: none;
+    text-align: left;
+  }
+
+  .review.active {
+    display: block;
+  }
+
+  .review-rating {
+    margin-bottom: 15px;
+  }
+
+  .star-rating {
+    color: #f5c518;
+    font-size: 32px;
+  }
+
+  .review-text {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+
+  .review-author {
+    font-weight: bold;
+    font-size: 18px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Reviews Slider",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Customer Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "review_text",
+          "label": "Review Text"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Reviews Slider",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
