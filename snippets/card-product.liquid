@@ -51,7 +51,7 @@
         {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %}
         {% if horizontal_class %} card--horizontal{% endif %}
       "
-      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%; background-color: orange;"
     >
       <div
         class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"
@@ -203,6 +203,36 @@
                 </span>
               </p>
             {%- endif -%}
+
+            <div class="nutrition-info-row">
+              {%- if card_product.metafields.nutrition.calories != blank -%}
+                <div class="caption-large light">
+                  <strong>Calories</strong>
+                  <span class="nutrition-value">{{ card_product.metafields.nutrition.calories.value }}</span>
+                </div>
+              {%- endif -%}
+
+              {%- if card_product.metafields.nutrition.protein != blank -%}
+                <div class="caption-large light">
+                  <strong>Protein</strong>
+                  <span class="nutrition-value">{{ card_product.metafields.nutrition.protein.value }}g</span>
+                </div>
+              {%- endif -%}
+
+              {%- if card_product.metafields.nutrition.carbs != blank -%}
+                <div class="caption-large light">
+                  <strong>Carbs</strong>
+                  <span class="nutrition-value">{{ card_product.metafields.nutrition.carbs.value }}g</span>
+                </div>
+              {%- endif -%}
+
+              {%- if card_product.metafields.nutrition.fats != blank -%}
+                <div class="caption-large light">
+                  <strong>Fats</strong>
+                  <span class="nutrition-value">{{ card_product.metafields.nutrition.fats.value }}g</span>
+                </div>
+              {%- endif -%}
+            </div>
 
             {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
             {%- if card_product.quantity_price_breaks_configured? -%}
@@ -622,3 +652,18 @@
     </div>
   </div>
 {%- endif -%}
+
+<style>
+  .nutrition-info-row {
+    display: flex;
+    padding-left: 20px;
+  }
+  {% comment %} .nutrition-info-row .caption-large {
+    margin-right: 15px;
+  } {% endcomment %}
+  .nutrition-value {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+  }
+</style>

@@ -72,6 +72,7 @@
           {{ section.settings.title }}
         </h2>
       {%- endif -%}
+
       {%- if section.settings.description != blank
         or section.settings.show_description
         and section.settings.collection.description != empty
@@ -84,6 +85,11 @@
           {%- endif %}
         </div>
       {%- endif -%}
+
+      <!-- You can add a metafield here if you want it for the entire collection -->
+      {% if collection.metafields.custom.calories %}
+        <div class="collection-calories">Calories: {{ collection.metafields.nutrition.calories }} kcal</div>
+      {% endif %}
     </div>
 
     <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
